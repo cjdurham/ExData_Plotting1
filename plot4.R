@@ -2,7 +2,11 @@
 setwd("/Users/ChrisDurham/Dropbox/Coursera/4. Exploratory Data Analysis/Week 1/")
 
 # Load Data Table
-data<-read.table("household_power_consumption.txt", header= TRUE, sep=";")
+data<-read.table("household_power_consumption.txt",
+                 header= TRUE,
+                 sep=";",
+                 na.strings = "?",
+                 stringsAsFactors = FALSE)
 
 # Subset to Rows Needed
 usedata<-subset(data, Date == "1/2/2007" | Date =="2/2/2007")
@@ -30,11 +34,11 @@ plot(usedata$Datetime,as.numeric(usedata$Sub_metering_1),
      type="n",
      ylab = "Energy sub metering")
 
-points(usedata$Datetime,as.numeric(usedata$Sub_metering_1),
+lines(usedata$Datetime,as.numeric(usedata$Sub_metering_1),
        col="black", type ="l")
-points(usedata$Datetime,as.numeric(usedata$Sub_metering_2),
+lines(usedata$Datetime,as.numeric(usedata$Sub_metering_2),
        col="red", type ="l")
-points(usedata$Datetime,as.numeric(usedata$Sub_metering_3),
+lines(usedata$Datetime,as.numeric(usedata$Sub_metering_3),
        col="blue", type ="l")
 legend("topright",
        col=c("black","red","blue"),
